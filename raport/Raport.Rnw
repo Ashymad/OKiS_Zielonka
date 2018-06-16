@@ -1,0 +1,254 @@
+\documentclass[a4paper,12pt]{mwart}
+
+\usepackage[polish]{babel}
+\usepackage{indentfirst}
+\usepackage{polski}
+\frenchspacing
+
+\usepackage{enumerate}
+\usepackage{csquotes}
+\DeclareQuoteAlias{croatian}{polish}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{makecell}
+\usepackage{siunitx}
+\sisetup{output-decimal-marker = {,}}
+\usepackage{icomma}
+\let\lll\undefined
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{mathtools}
+\usepackage{setspace}
+\usepackage{fontspec,xunicode}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{tikz}
+\setmainfont{Noto Serif}
+
+\renewcommand\labelitemi{\textbullet}
+
+<<Opcje globalne, include=FALSE>>=
+knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE)
+knitr::opts_knit$set(concordance = TRUE);
+
+Sys.setlocale(category = 'LC_ALL','pl_PL.UTF-8')
+Sys.setenv(LANG="PL")
+Sys.setenv(LC_ALL="pl_PL.UTF-8")
+
+@ 
+
+<<tikzSettings>>=
+options(width=71)
+options(digits=7)
+
+size = 5
+
+knitr::opts_chunk$set(keep.source=TRUE,
+		      fig.width=size,
+		      fig.height=size*6/7,
+		      fig.lp="fig:",
+		      fig.env="figure",
+		      fig.pos='H',
+		      fig.path='figures-knitr/',  # a unique ID here if you got
+		      cache.path='cache-knitr/',  # many documents in one dir
+		      cache=TRUE,
+		      tidy=FALSE,
+		      dev='tikz',
+		      external=FALSE,
+		      fig.align='center',
+		      size='small')
+
+options(tikzDefaultEngine = "xetex",
+	tikzXelatexPackages = 
+	    c("\\usepackage{tikz}\n",
+	      "\\usepackage{fontspec,xunicode}\n",
+	      "\\setmainfont{Noto Serif}\n"
+	      ),
+	tikzUnicodeMetricPackages =
+	    c("\\usetikzlibrary{calc}\n",
+	      "\\usepackage{fontspec,xunicode}\n"
+	      )
+	)
+
+options(tikzMetricsDictionary="~/R/tikzMetrics") # speeds tikz up
+
+@ 
+
+\author{Szymon Mikulicz}
+\title{Pomiar i ocena parametrów akustycznych oraz projekt systemu nagłośnieniowego sali widowiskowej}
+
+\onehalfspacing
+\begin{document}
+
+\maketitle
+
+\section{Opis badanego pomieszczenia}
+
+\begin{itemize}
+    \item
+	Zbadano salę widowiskowo-konferencyjna Ośrodka Kultury i Sportu w
+	Zielonce znajdującą się w budynku Miejskiego Gimnazjum w Zielonce.
+    \item
+	Plan pomieszczenia (Rys. 1):
+    \item
+	Objętość pomieszczenia: 1400 m\textsuperscript{3}
+    \item
+	Pomieszczenie posiada 230 składanych krzeseł obitych stosunkowo
+	cienkim nieporowatym materiałem (patrz zdj. 1,2). Podczas pomiarów
+	były złożone. 
+    \item
+	Pomieszczenie posiada kształt prostokątny na rzucie odgórnym, miejsca
+	są ustawione w rzędach wschodzących pod kątem do góry.
+    \item
+	pomieszczenia jest zwyczajną pomalowaną ścianą (patrz zdj. 3,4), natomiast
+	sufit jest w głównej mierze podwieszany (patrz zdj. 5).
+    \item
+	Podczas pomiarów sala była pusta a rolety na oknach były podniesione.
+	Kurtyny były rozsunięte (patrz zdj. 4).
+    \item
+	Estrada nie posiada żadnego znacznego umeblowania poza reflektorami,
+	warto jednak zwrócić uwagę na znajdującą sią za kurtynami bocznymi
+	scenografię (patrz zdj. 6). Podczas pomiarów schowano tamże
+	scenografię ze sceny,
+\end{itemize}
+
+\section{Opis warunków pomiaru}
+
+\begin{itemize}
+    \item
+	Do pomiarów odpowiedzi impulsowej wykorzystano źródła w~postaci
+	gumowych baloników nieznanego producenta wypełnianych powietrzem, a
+	następnie przebijanych w celu symulacji impulsu Diraca.
+    \item
+	Wykorzystano dwie pozycje źródła i sześć pozycji odbiornika. Rysunek 2
+	przedstawia szczegółowe rozmieszczenie źródeł i~odbiorników wraz z
+	współrzędnymi. Źródła znajdywały się na wysokości 1.8 m, a odbiorniki
+	na wysokości 1.7 m.
+    \item
+	Pomiary wykonano z pomocą mikrofonu firmy Behringer, typ C-1,
+	podłączonego do miksera firmy Behringer, typ Xenyx 802, podłączonego
+	do interfejsu audio firmy Behreinger, typ UCA222, podłączonego do
+	komputera z oprogramowaniem Audacity®. Czas pogłosu EDT i
+	T\textsubscript{20} obliczono za pomocą oprogramowania Room Eq Wizard,
+	a parametry STI, C\textsubscript{80} i INR, za pomocą oprogramowania
+	Dirac firmy Brüel \& Kjær. 
+    \item
+	Pomiary zostały wykonane dnia 3.4.2016 przez Szymona Mikulicza.
+\end{itemize}
+
+\section{Wyniki pomiaru}
+\begin{itemize}
+    \item
+	\textbf{EDT} w pasmach oktaw. (rys. 3, tab. 1) i 1/3 oktaw. (rys. 4,
+	tab. 2).
+    \item
+	\textbf{T}\textsubscript{\textbf{20}} w pasmach oktaw. (rys. 5, tab.
+	3) i 1/3 oktaw. (rys. 6, tab. 4).
+    \item
+	\textbf{STI}\textsubscript{\textbf{ }} (rys. 7) (wyniki z danego
+	źródła są zaznaczone kolorem).
+    \item
+	INR w pasmach oktaw. (rys. 8, tab. 5) i 1/3 oktaw. (rys. 9, tab. 6).
+    \item
+	C\textsubscript{80 }(rys. 10) (wyniki z danego źródła są zaznaczone
+	kolorem).
+\end{itemize}
+
+\section{Ocena parametrów akustycznych}
+
+\begin{itemize}
+    \item
+	W celu zbadania parametrów akustycznych w sali pełnej z roletami
+	zasuniętymi wykonano model w środowisku CATT Acoustic\\
+	(rys. 11, 12), po czym przeprowadzono ich symulację w tymże
+	środowisku. 
+    \item
+	Jest to sala o zastosowaniach konferencyjno-teatralnych, toteż czas
+	pogłosu, powinien być zbliżony do \textbf{0.84s} (wyznaczono na
+	podstawie wzoru 0.075V\textsuperscript{1/3}). Rys. 13 przedstawia
+	wyniki symulacji sali z~widzami i wartość zalecą z zakresem błędu
+	20\%.
+    \item
+	Rys. 14 przedstawia wartości STI na sali (wyniki z danego źródła
+	zaznaczono kolorem), jak można zauważyć w całej sali zrozumiałośc mowy
+	jest dobra, tak więc pod tym względem pomieszczenie odpowiada swojemu
+	przeznaczeniu.
+    \item
+	Rys. 15 przedstawia wartości C\textsubscript{80} na sali (wyniki z
+	danego źródła zaznaczono kolorem), tutaj wyniki są niezwykle
+	zróźnicowane, natomiast, jako że przeznaczeniem tej sali nie są
+	występy muzycznem, są dopuszczalne.
+    \item
+	Kubatura pomieszczenia na osobę wynosi ok. \textbf{6
+	m}\textsuperscript{\textbf{3}} co jest nieco zbyt dużą iloścą, jak na salę
+	teatralno-konferencyjną.
+\end{itemize}
+
+\section{Kryteria systemu nagłośnienia}
+
+\begin{itemize}
+    \item
+	Pomieszczenie jest salą wielofunkcyjną w której odbywają się przeróżne
+	wydarzenia szkolne i kulturalne, natomiast jej główne przeznaczenie
+	można określić jako audytoryjne, gdyż najczęściej odbywają się w tej
+	sali arcynudne przemowy Pani Dyrektor.
+    \item
+	Jako że audiencją mówców występujących w tej sali jest najczęściej
+	pełna sala gimnazjalistów, toteż przyjeto dosyć wysokie tło 65 dB.
+    \item
+	Zdecydowano się na poziom w okolicach 85-90 dB na sali.
+\end{itemize}
+
+\section{Rozmieszczenie i konfiguracja systemu nagłośnieniowego}
+
+\begin{itemize}
+    \item
+	Salę nagłośniono dwoma zestawami głośnikowymi umieszczonymi w narożach
+	sali (rys. 16), znajdują się one na wysokości 6,35 m, są oddalone od
+	ścian bocznych o 1,75 m. Głośnik po lewej (ze strony widowni, jak na
+	rysunku) stronie jest oddalony od ściany tylniej o 0,5 m, a prawy jest
+	na tej samej linii. Głośniki są skierowane w dół pod kątem 30°
+	względem poziomu.
+    \item
+	Wykorzystano dwudrożne zestawy głośnikowe firmy macpherson, model
+	PC12, wybrane parametry przedstawia tablica 6. 
+\end{itemize}
+
+\begin{tabular}{|c|c|c|}
+    \hline
+    Parametr & Wartość\\\hline
+    Moc zestawu (RMS) & 300 W\\\hline
+    Skuteczność (1 W / 1 m) & 96 dB\\\hline
+    Max SPL & 123 dB\\\hline
+    Zakres częstotliwości (-2 dB) & 80 Hz -- 18 Hz\\\hline
+    Kąt promieniowania (pion/poziom, -6 dB) & 60° / 50°\\\hline
+\end{tabular}
+
+\section{Analiza}
+
+\begin{itemize}
+    \item
+	Symulację przeprowadzono w programie CATT Acoustic
+    \item
+	Parametry symulacji to: krok siatki: 0,5 m; liczba promieni: 47335;
+	długość echogramu: 2 s. Wzięto pod uwagę pochłanianie dźwięku przez
+	powietrzę (absorpcję).
+    \item
+	Do wyznaczania STI, ustalono poziom tła wynoszący 65 dB.
+    \item
+	Rysunki od 17 do 21 przedstawiają rozkład ciśnienia akustycznego w
+	nagłośnionej sali, dla częstotliwości kolejno 250 Hz, 500 Hz, 1 kHz, 2
+	kHz, 4 kHz
+    \item
+	Rysunek 22 przedstawia rozkład STI w sali
+\end{itemize}
+
+\section{Wnioski}
+
+\begin{itemize}
+    \item
+	Uzyskano porządane poziomy ciśnienia w pomieszczeniu
+    \item
+	Mimo wysokiego tła uzyskano STI w całej sali > 0,7 co ma
+	szczególne znaczenie w przypadku tej sali jako sali do przemówień.
+\end{itemize}
+\end{documents}
