@@ -1,0 +1,81 @@
+;PROJECT=AAProject
+
+
+;natural source
+;SOURCE A0
+; DIRECTIVITY = "omni"
+; POS = 6.2 4.6 Hs+1.8
+; ;AIMPOS = 0.0 5.0 1.7
+; AIMANGLES = 0 0 
+; Lp1m_a = Lp_voice_normal ;speech input
+;END
+;
+;SOURCE A1
+; DIRECTIVITY = "omni"
+; POS = 6.2 6.6 1.8
+; ;AIMPOS = 6.2 6.6 1.8
+; AIMANGLES = 0 0 
+; Lp1m_a = Lp_voice_normal ;speech input
+;END
+;
+;;e-a source with line input
+;SOURCE B0
+; DIRECTIVITY = "catt.sd1"
+; POS = -2.0 3.0 3.7
+; ;AIMPOS = 0.0 7.0 1.7
+; AIMANGLES = 0 0 
+; LvIn = Lv_pink 9  ;pink input 9 dBV all bands
+; GAIN = <0 0 0 0 0 0 : 0 0>
+;END
+;
+;;e-a source with mic input
+;SOURCE B1
+; DIRECTIVITY = "catt.sd1"
+; POS = 2.0 3.0 3.7 
+; ;AIMPOS = 0.0 7.0 1.7
+; AIMANGLES = 0 0 
+; Lp1m_a = Lp_voice_normal ;speech mic input
+; MICSENSITIVITY = -60
+; GAIN = <0 0 0 0 0 0 : 0 0>
+;END
+;
+;RETURN
+
+;for projects that need to use TUCT v1:
+
+SOURCEDEFS
+
+; a natural source
+;id   position    directivity  aim-position [roll]
+ A0  w-1.75 Ls+0.5 6.35   MP-PC12.CF1    x(47) y(47) z(47)-5
+ Lp1m_a = <97.7 99.6 99.1 99.6 99.8 98.0>
+ Gain_a = <0 0 0 0 0 0>
+ Delay_e = 0
+
+ A1  1.75 Ls+0.5 6.35     MP-PC12.CF1    x(44) y(44) z(44)-5
+ Lp1m_a = <97.7 99.6 99.1 99.6 99.8 98.0>
+ Gain_a = <0 0 0 0 0 0>
+ Delay_e = 0
+
+ A2  w-0.75 Ls+0.5 2.35   cls-3100.CF1    x(1184) y(1184) 2.35
+ Lp1m_a = <74.5 80.6 82.1 86 87.2 87.7>
+ Gain_a = <5 5 5 5 5 5>
+ Delay_e = 0
+
+ A3  0.75 Ls+0.5   2.35     cls-3100.CF1    x(1184) y(1184) 2.35
+ Lp1m_a = <74.5 80.6 82.1 86 87.2 87.7>
+ Gain_a = <5 5 5 5 5 5>
+ Delay_e = 0
+
+;; an electro-acoustical source (syntax 1 specifying Gain_a)
+; B0  -2.0 3.0 3.7  Catt.SD0  0.0 7.0 1.7
+; Lp1m_a   = Lp_voice_normal
+; Gain_a   = <20 20 20 20 20 20> ; calculates Lp1m_ea
+; Delay_e  = 0
+;
+;; an electro-acoustical source (syntax 2 specifying Lp1m_ea)
+; B1   2.0 3.0 3.7  Catt.SD0  0.0 7.0 1.7
+; Lp1m_a   = Lp_voice_normal
+; Lp1m_ea  = <75 80 82 85 88 88>  ; at 1m on source axis
+; Delay_e  = 0
+

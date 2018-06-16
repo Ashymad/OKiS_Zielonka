@@ -1,0 +1,12 @@
+;PROJECT=AAProject
+
+LOCAL Hms = Hs+Hm
+LOCAL L = Ls+Lw
+
+RECEIVERS
+ 1    4.0 2.5 Hms
+ 2    W-3.5 3.0 Hms
+ 3    3.6 9.4 lock( 661 662 663 )
+ 4    W-3.1 9 lock( 661 662 663 )
+ 5    2.2 L-5 lock( 661 662 663 )
+ 6    W-3.1 L-6 lock( 661 662 663 )
