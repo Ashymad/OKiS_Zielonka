@@ -9,6 +9,7 @@
 \usepackage{csquotes}
 \DeclareQuoteAlias{croatian}{polish}
 \usepackage{graphicx}
+\usepackage{subfig}
 \usepackage{float}
 \usepackage{makecell}
 \usepackage{siunitx}
@@ -87,17 +88,37 @@ options(tikzMetricsDictionary="~/R/tikzMetrics") # speeds tikz up
     \item
 	Zbadano salę widowiskowo-konferencyjna Ośrodka Kultury i Sportu w
 	Zielonce znajdującą się w budynku Miejskiego Gimnazjum w Zielonce.
+	Plan pomieszczenia przedstawia rysunek \ref{fig:plan1}.
+\end{itemize}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Plan1.png}
+    \caption{Plan sali widowiskowej}
+    \label{fig:plan1}
+\end{figure}
+\begin{itemize}
     \item
-	Plan pomieszczenia (Rys. 1):
+	Objętość pomieszczenia: \SI{1400}{\meter\cubed}
     \item
-	Objętość pomieszczenia: 1400 m\textsuperscript{3}
-    \item
-	Pomieszczenie posiada 230 składanych krzeseł obitych stosunkowo
-	cienkim nieporowatym materiałem (patrz zdj. 1,2). Podczas pomiarów
+	Pomieszczenie posiada 230 składanych krzeseł obitych stosunkowo cienkim
+	nieporowatym materiałem (patrz rys. \ref{fig:krze}). Podczas pomiarów
 	były złożone. 
     \item
 	Pomieszczenie posiada kształt prostokątny na rzucie odgórnym, miejsca
 	są ustawione w rzędach wschodzących pod kątem do góry.
+\end{itemize}
+\begin{figure}[H]%
+    \centering
+    \subfloat{%
+	\includegraphics[width=0.6\textwidth]{Photos/DSC_1324.JPG}
+    }
+    \subfloat{%
+	\includegraphics[width=0.4\textwidth, angle=90]{Photos/DSC_1325.JPG}
+    }
+    \caption{Krzesło na widowni}
+    \label{fig:krze}
+\end{figure}%
+\begin{itemize}
     \item
 	pomieszczenia jest zwyczajną pomalowaną ścianą (patrz zdj. 3,4), natomiast
 	sufit jest w głównej mierze podwieszany (patrz zdj. 5).
@@ -213,15 +234,18 @@ options(tikzMetricsDictionary="~/R/tikzMetrics") # speeds tikz up
 	PC12, wybrane parametry przedstawia tablica 6. 
 \end{itemize}
 
-\begin{tabular}{|c|c|c|}
-    \hline
-    Parametr & Wartość\\\hline
-    Moc zestawu (RMS) & 300 W\\\hline
-    Skuteczność (1 W / 1 m) & 96 dB\\\hline
-    Max SPL & 123 dB\\\hline
-    Zakres częstotliwości (-2 dB) & 80 Hz -- 18 Hz\\\hline
-    Kąt promieniowania (pion/poziom, -6 dB) & 60° / 50°\\\hline
-\end{tabular}
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|}
+	\hline
+	Parametr & Wartość\\\hline
+	Moc zestawu (RMS) & 300 W\\\hline
+	Skuteczność (1 W / 1 m) & 96 dB\\\hline
+	Max SPL & 123 dB\\\hline
+	Zakres częstotliwości (-2 dB) & 80 Hz -- 18 Hz\\\hline
+	Kąt promieniowania (pion/poziom, -6 dB) & 60° / 50°\\\hline
+    \end{tabular}
+\end{table}
 
 \section{Analiza}
 
@@ -251,4 +275,4 @@ options(tikzMetricsDictionary="~/R/tikzMetrics") # speeds tikz up
 	Mimo wysokiego tła uzyskano STI w całej sali > 0,7 co ma
 	szczególne znaczenie w przypadku tej sali jako sali do przemówień.
 \end{itemize}
-\end{documents}
+\end{document}
