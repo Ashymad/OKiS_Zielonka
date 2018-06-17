@@ -227,8 +227,9 @@ tercje <- round(dirmean(Sys.glob("./Dirac_Data/* third-octaves.txt")),2)
 \section{Wyniki pomiaru}
 \begin{itemize}
     \item
-	\textbf{EDT} w pasmach oktaw. (rys. 3, tab. \ref{tab:edtoct}) i 1/3 oktaw. (rys. 4,
-	tab. \ref{tab:edtter}).
+	\textbf{EDT} w pasmach oktaw. (rys. \ref{fig:edt_oct}, tab.
+	\ref{tab:edtoct}) i 1/3 oktaw. (rys. \ref{fig:edt_ter}, tab.
+	\ref{tab:edtter}).
 \end{itemize}
 <<edt_oct, fig.cap="Wyniki pomiaru EDT w oktawach">>=
 dafr <- as.data.frame(oktawy[1,3:8])
@@ -275,8 +276,9 @@ ggplot(data=dafr, aes(x=xticks, y=val)) +
 \end{table}
 \begin{itemize}
     \item
-	\textbf{T}\textsubscript{\textbf{20}} w pasmach oktaw. (rys. 5, tab.
-	\ref{tab:t20oct}) i 1/3 oktaw. (rys. 6, tab. \ref{tab:t20ter}).
+	\textbf{T}\textsubscript{\textbf{20}} w pasmach oktaw. (rys.
+	\ref{fig:t20_oct}, tab.  \ref{tab:t20oct}) i 1/3 oktaw. (rys.
+	\ref{fig:t20_ter}, tab. \ref{tab:t20ter}).
 \end{itemize}
 <<t20_oct, fig.cap="Wyniki pomiaru T\\textsubscript{20} w oktawach">>=
 dafr <- as.data.frame(oktawy[2,3:8])
@@ -323,12 +325,20 @@ ggplot(data=dafr, aes(x=xticks, y=val)) +
 \end{table}
 \begin{itemize}
     \item
-	\textbf{STI}\textsubscript{\textbf{ }} (rys. 7) (wyniki z danego
-	źródła są zaznaczone kolorem).
+	\textbf{STI}\textsubscript{\textbf{ }} (rys. \ref{fig:plan_sti})
+	(wyniki z danego źródła są zaznaczone kolorem).
 \end{itemize}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Plan3.png}
+    \caption{Wyniki pomiaru STI}
+    \label{fig:plan_sti}
+\end{figure}
 \begin{itemize}
     \item
-	\textbf{INR} w pasmach oktaw. (rys. 8, tab. \ref{tab:inroct}) i 1/3 oktaw. (rys. 9, tab. \ref{tab:inrter}).
+	\textbf{INR} w pasmach oktaw. (rys. \ref{fig:inr_oct}, tab.
+	\ref{tab:inroct}) i 1/3 oktaw. (rys. \ref{fig:inr_ter}, tab.
+	\ref{tab:inrter}).
 \end{itemize}
 <<inr_oct, fig.cap="Wyniki pomiaru INR w oktawach">>=
 dafr <- as.data.frame(oktawy[3,3:8])
@@ -378,9 +388,15 @@ ggplot(data=dafr, aes(x=xticks, y=val)) +
 \end{table}
 \begin{itemize}
     \item
-	\textbf{C\textsubscript{80}}(rys. 10) (wyniki z danego źródła są zaznaczone
-	kolorem).
+	\textbf{C\textsubscript{80}} (rys. \ref{fig:plan_c80}) (wyniki z danego
+	źródła są zaznaczone kolorem).
 \end{itemize}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Plan4.png}
+    \caption{Wyniki pomiaru C\textsubscript{80}}
+    \label{fig:plan_c80}
+\end{figure}
 
 \section{Ocena parametrów akustycznych}
 
