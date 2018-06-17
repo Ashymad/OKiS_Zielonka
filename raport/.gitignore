@@ -126,6 +126,7 @@ acs-*.bib
 
 # knitr
 *-concordance.tex
+cache-knitr/
 # TODO Comment the next line if you want to keep your tikz graphics files
 *.tikz
 *-tikzDictionary

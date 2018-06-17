@@ -45,7 +45,7 @@ size = 5
 
 knitr::opts_chunk$set(keep.source=TRUE,
 		      fig.width=size,
-		      fig.height=size*6/7,
+		      fig.height=size*5/7,
 		      fig.lp="fig:",
 		      fig.env="figure",
 		      fig.pos='H',
@@ -77,6 +77,7 @@ options(tikzMetricsDictionary="~/R/tikzMetrics") # speeds tikz up
 <<Wczytywanie>>=
 library(knitr)
 library(kableExtra)
+library(ggplot2)
 
 options(knitr.table.format = "latex")
 
@@ -229,6 +230,29 @@ tercje <- round(dirmean(Sys.glob("./Dirac_Data/* third-octaves.txt")),2)
 	\textbf{EDT} w pasmach oktaw. (rys. 3, tab. \ref{tab:edtoct}) i 1/3 oktaw. (rys. 4,
 	tab. \ref{tab:edtter}).
 \end{itemize}
+<<edt_oct, fig.cap="Wyniki pomiaru EDT w oktawach">>=
+dafr <- as.data.frame(oktawy[1,3:8])
+colnames(dafr) <- 'val'
+xticks <- 1:length(dafr[[1]])
+ggplot(data=dafr, aes(x=xticks, y=val)) +
+    geom_line() +
+    scale_x_continuous(name="Cz\\k{e}stotliwo\\'s\\'c",
+		     breaks=xticks,
+		     labels=rownames(dafr)) +
+    scale_y_continuous(name="Czas pog{\\l{}}osu [\\si{\\second}]")
+@
+<<edt_ter, fig.cap="Wyniki pomiaru EDT w tercjach">>=
+dafr <- as.data.frame(tercje[1,8:22])
+colnames(dafr) <- 'val'
+xticks <- 1:length(dafr[[1]])
+ggplot(data=dafr, aes(x=xticks, y=val)) +
+    geom_line() +
+    scale_x_continuous(name="Cz\\k{e}stotliwo\\'s\\'c",
+		     breaks=xticks,
+		     labels=rownames(dafr)) +
+    scale_y_continuous(name="Czas pog{\\l{}}osu [\\si{\\second}]") +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+@
 \begin{table}[H]
     \centering
     \caption{Wyniki pomiaru EDT w oktawach}
@@ -254,6 +278,29 @@ tercje <- round(dirmean(Sys.glob("./Dirac_Data/* third-octaves.txt")),2)
 	\textbf{T}\textsubscript{\textbf{20}} w pasmach oktaw. (rys. 5, tab.
 	\ref{tab:t20oct}) i 1/3 oktaw. (rys. 6, tab. \ref{tab:t20ter}).
 \end{itemize}
+<<t20_oct, fig.cap="Wyniki pomiaru T\\textsubscript{20} w oktawach">>=
+dafr <- as.data.frame(oktawy[2,3:8])
+colnames(dafr) <- 'val'
+xticks <- 1:length(dafr[[1]])
+ggplot(data=dafr, aes(x=xticks, y=val)) +
+    geom_line() +
+    scale_x_continuous(name="Cz\\k{e}stotliwo\\'s\\'c",
+		     breaks=xticks,
+		     labels=rownames(dafr)) +
+    scale_y_continuous(name="Czas pog{\\l{}}osu [\\si{\\second}]")
+@
+<<t20_ter, fig.cap="Wyniki pomiaru T\\textsubscript{20} w tercjach">>=
+dafr <- as.data.frame(tercje[2,8:22])
+colnames(dafr) <- 'val'
+xticks <- 1:length(dafr[[1]])
+ggplot(data=dafr, aes(x=xticks, y=val)) +
+    geom_line() +
+    scale_x_continuous(name="Cz\\k{e}stotliwo\\'s\\'c",
+		     breaks=xticks,
+		     labels=rownames(dafr)) +
+    scale_y_continuous(name="Czas pog{\\l{}}osu [\\si{\\second}]") +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+@
 \begin{table}[H]
     \centering
     \caption{Wyniki pomiaru T\textsubscript{20} w oktawach}
@@ -283,23 +330,49 @@ tercje <- round(dirmean(Sys.glob("./Dirac_Data/* third-octaves.txt")),2)
     \item
 	\textbf{INR} w pasmach oktaw. (rys. 8, tab. \ref{tab:inroct}) i 1/3 oktaw. (rys. 9, tab. \ref{tab:inrter}).
 \end{itemize}
+<<inr_oct, fig.cap="Wyniki pomiaru INR w oktawach">>=
+dafr <- as.data.frame(oktawy[3,3:8])
+colnames(dafr) <- 'val'
+xticks <- 1:length(dafr[[1]])
+ggplot(data=dafr, aes(x=xticks, y=val)) +
+    geom_bar(stat="identity") +
+    scale_x_continuous(name="Cz\\k{e}stotliwo\\'s\\'c",
+		     breaks=xticks,
+		     labels=rownames(dafr)) +
+    scale_y_continuous(name="Poziom [\\si{\\decibel}]")
+@
+<<inr_ter, fig.cap="Wyniki pomiaru INR w tercjach">>=
+dafr <- as.data.frame(tercje[3,8:22])
+colnames(dafr) <- 'val'
+xticks <- 1:length(dafr[[1]])
+ggplot(data=dafr, aes(x=xticks, y=val)) +
+    geom_bar(stat="identity") +
+    scale_x_continuous(name="Cz\\k{e}stotliwo\\'s\\'c",
+		     breaks=xticks,
+		     labels=rownames(dafr)) +
+    scale_y_continuous(name="Poziom [\\si{\\decibel}]") +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+@
 \begin{table}[H]
     \centering
     \caption{Wyniki pomiaru INR w oktawach}
-    \Sexpr{kable(oktawy[3,3:8,drop=FALSE], escape=FALSE, booktabs=TRUE)}
+    \Sexpr{kable(round(oktawy[3,3:8,drop=FALSE],1), escape=FALSE, booktabs=TRUE)}
     \label{tab:inroct}
 \end{table}
 \begin{table}[H]
     \centering
     \caption{Wyniki pomiaru INR w tercjach}
     \subfloat{%
-	\Sexpr{kable(t(tercje[3,8:12,drop=FALSE]), escape=FALSE, booktabs=TRUE)}%
+	\Sexpr{kable(t(round(tercje[3,8:12,drop=FALSE],1)), escape=FALSE,
+	booktabs=TRUE)}%
     }
     \subfloat{%
-	\Sexpr{kable(t(tercje[3,13:17,drop=FALSE]), escape=FALSE, booktabs=TRUE)}%
+	\Sexpr{kable(t(round(tercje[3,13:17,drop=FALSE],1)), escape=FALSE,
+	booktabs=TRUE)}%
     }
     \subfloat{%
-	\Sexpr{kable(t(tercje[3,18:22,drop=FALSE]), escape=FALSE, booktabs=TRUE)}%
+	\Sexpr{kable(t(round(tercje[3,18:22,drop=FALSE],1)), escape=FALSE,
+	booktabs=TRUE)}%
     }
     \label{tab:inrter}
 \end{table}
