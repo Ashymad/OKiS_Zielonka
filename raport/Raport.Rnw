@@ -22,6 +22,7 @@
 \usepackage{fontspec,xunicode}
 \usepackage{enumitem}
 \usepackage{booktabs}
+\usepackage{hyperref}
 \usepackage{tikz}
 \setmainfont{Noto Serif}
 
@@ -76,6 +77,7 @@ options(tikzMetricsDictionary="~/R/tikzMetrics") # speeds tikz up
 
 <<Wczytywanie>>=
 library(knitr)
+library(purrr)
 library(kableExtra)
 library(ggplot2)
 
@@ -116,7 +118,7 @@ tercje <- round(dirmean(Sys.glob("./Dirac_Data/* third-octaves.txt")),2)
 \begin{document}
 
 \maketitle
-
+\tableofcontents
 \section{Opis badanego pomieszczenia}
 
 \begin{itemize}
@@ -190,8 +192,8 @@ tercje <- round(dirmean(Sys.glob("./Dirac_Data/* third-octaves.txt")),2)
 	Wykorzystano dwie pozycje źródła i sześć pozycji odbiornika. Rysunek
 	\ref{fig:rozmieszczenie} przedstawia szczegółowe rozmieszczenie źródeł
 	i~odbiorników wraz z współrzędnymi. Źródła znajdywały się na wysokości
-	1.8 m, a odbiorniki
-	na wysokości 1.7 m.
+	\SI{1.8}{\meter}, a odbiorniki
+	na wysokości \SI{1.7}{\meter}.
 \end{itemize}
 \begin{figure}[H]
     \centering
@@ -340,29 +342,6 @@ ggplot(data=dafr, aes(x=xticks, y=val)) +
 	\ref{tab:inroct}) i 1/3 oktaw. (rys. \ref{fig:inr_ter}, tab.
 	\ref{tab:inrter}).
 \end{itemize}
-<<inr_oct, fig.cap="Wyniki pomiaru INR w oktawach">>=
-dafr <- as.data.frame(oktawy[3,3:8])
-colnames(dafr) <- 'val'
-xticks <- 1:length(dafr[[1]])
-ggplot(data=dafr, aes(x=xticks, y=val)) +
-    geom_bar(stat="identity") +
-    scale_x_continuous(name="Cz\\k{e}stotliwo\\'s\\'c",
-		     breaks=xticks,
-		     labels=rownames(dafr)) +
-    scale_y_continuous(name="Poziom [\\si{\\decibel}]")
-@
-<<inr_ter, fig.cap="Wyniki pomiaru INR w tercjach">>=
-dafr <- as.data.frame(tercje[3,8:22])
-colnames(dafr) <- 'val'
-xticks <- 1:length(dafr[[1]])
-ggplot(data=dafr, aes(x=xticks, y=val)) +
-    geom_bar(stat="identity") +
-    scale_x_continuous(name="Cz\\k{e}stotliwo\\'s\\'c",
-		     breaks=xticks,
-		     labels=rownames(dafr)) +
-    scale_y_continuous(name="Poziom [\\si{\\decibel}]") +
-    theme(axis.text.x = element_text(angle = 45, hjust = 1))
-@
 \begin{table}[H]
     \centering
     \caption{Wyniki pomiaru INR w oktawach}
@@ -386,6 +365,29 @@ ggplot(data=dafr, aes(x=xticks, y=val)) +
     }
     \label{tab:inrter}
 \end{table}
+<<inr_oct, fig.cap="Wyniki pomiaru INR w oktawach">>=
+dafr <- as.data.frame(oktawy[3,3:8])
+colnames(dafr) <- 'val'
+xticks <- 1:length(dafr[[1]])
+ggplot(data=dafr, aes(x=xticks, y=val)) +
+    geom_bar(stat="identity") +
+    scale_x_continuous(name="Cz\\k{e}stotliwo\\'s\\'c",
+		     breaks=xticks,
+		     labels=rownames(dafr)) +
+    scale_y_continuous(name="Poziom [\\si{\\decibel}]")
+@
+<<inr_ter, fig.cap="Wyniki pomiaru INR w tercjach">>=
+dafr <- as.data.frame(tercje[3,8:22])
+colnames(dafr) <- 'val'
+xticks <- 1:length(dafr[[1]])
+ggplot(data=dafr, aes(x=xticks, y=val)) +
+    geom_bar(stat="identity") +
+    scale_x_continuous(name="Cz\\k{e}stotliwo\\'s\\'c",
+		     breaks=xticks,
+		     labels=rownames(dafr)) +
+    scale_y_continuous(name="Poziom [\\si{\\decibel}]") +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+@
 \begin{itemize}
     \item
 	\textbf{C\textsubscript{80}} (rys. \ref{fig:plan_c80}) (wyniki z danego
@@ -403,31 +405,77 @@ ggplot(data=dafr, aes(x=xticks, y=val)) +
 \begin{itemize}
     \item
 	W celu zbadania parametrów akustycznych w sali pełnej z roletami
-	zasuniętymi wykonano model w środowisku CATT Acoustic\\
-	(rys. 11, 12), po czym przeprowadzono ich symulację w tymże
-	środowisku. 
+	zasuniętymi wykonano model w środowisku CATT Acoustic\\ (rys.
+	\ref{fig:model1}, \ref{fig:model2}), po czym przeprowadzono ich
+	symulację w tymże środowisku. 
     \item
 	Jest to sala o zastosowaniach konferencyjno-teatralnych, toteż czas
-	pogłosu, powinien być zbliżony do \textbf{0.84s} (wyznaczono na
-	podstawie wzoru 0.075V\textsuperscript{1/3}). Rys. 13 przedstawia
-	wyniki symulacji sali z~widzami i wartość zalecą z zakresem błędu
-	20\%.
+	pogłosu, powinien być zbliżony do \SI{0.84}{\second} (wyznaczono na
+	podstawie wzoru $0.075V^{1/3}$). Rys. \ref{fig:sym_t20}
+	przedstawia wyniki symulacji sali z~widzami i wartość zalecą z zakresem
+	błędu \SI{20}{\percent}.
     \item
-	Rys. 14 przedstawia wartości STI na sali (wyniki z danego źródła
-	zaznaczono kolorem), jak można zauważyć w całej sali zrozumiałośc mowy
-	jest dobra, tak więc pod tym względem pomieszczenie odpowiada swojemu
-	przeznaczeniu.
+	Rys. \ref{fig:symsti} przedstawia wartości STI na sali (wyniki z danego
+	źródła zaznaczono kolorem), jak można zauważyć w całej sali
+	zrozumiałośc mowy jest dobra, tak więc pod tym względem pomieszczenie
+	odpowiada swojemu przeznaczeniu.
     \item
-	Rys. 15 przedstawia wartości C\textsubscript{80} na sali (wyniki z
-	danego źródła zaznaczono kolorem), tutaj wyniki są niezwykle
-	zróźnicowane, natomiast, jako że przeznaczeniem tej sali nie są
-	występy muzycznem, są dopuszczalne.
+	Rys. \ref{fig:symc80} przedstawia wartości C\textsubscript{80} na sali
+	(wyniki z danego źródła zaznaczono kolorem), tutaj wyniki są niezwykle
+	zróźnicowane, natomiast, jako że przeznaczeniem tej sali nie są występy
+	muzycznem, są dopuszczalne.
     \item
-	Kubatura pomieszczenia na osobę wynosi ok. \textbf{6
-	m}\textsuperscript{\textbf{3}} co jest nieco zbyt dużą iloścą, jak na salę
-	teatralno-konferencyjną.
+	Kubatura pomieszczenia na osobę wynosi ok. \SI{6}{\meter\cubed} co jest
+	nieco zbyt dużą iloścą, jak na salę teatralno-konferencyjną.
 \end{itemize}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Shaded.png}
+    \caption{Widok na scenę modelu}
+    \label{fig:model1}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Shaded2.png}
+    \caption{Widok na widownię modelu}
+    \label{fig:model2}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Plan5.png}
+    \caption{Wyniki symulacji STI}
+    \label{fig:symsti}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Plan6.png}
+    \caption{Wyniki symulacj C\textsubscript{80}}
+    \label{fig:symc80}
+\end{figure}
+<<sym_t20, fig.cap="Wyniki symulacji T\\textsubscript{20}">>=
+library(reshape2)
+dta <- matrix(c(1.24, 1.10, 1.07, 1.01, 0.83, 0.68,
+		0.84, 0.84, 0.84, 0.84, 0.84, 0.84,
+		1.18, 1.01, 1.01, 1.01, 1.01, 1.01,
+		0.67, 0.67, 0.67, 0.67, 0.67, 0.50),
+	      nrow=4, ncol=6, byrow=TRUE)
+dafr <- melt(as.data.frame(t(dta)))
+xticks <- 1:6
+ggplot(data=dafr, aes(x=rep(xticks,4), y=value, group=variable)) +
+    geom_line(aes(linetype=variable)) +
+    scale_x_continuous(name="Cz\\k{e}stotliwo\\'s\\'c",
+		       breaks=xticks,
+		       labels=colnames(oktawy[,3:8])) +
+    scale_y_continuous(name="Czas pog{\\l{}}osu [\\si{\\second}]") +
+    scale_linetype_manual(values=c("solid", "longdash", "dotted", "dotted"),
+			  name="Warto\\'s\\'c",
+			  labels=c("T\\textsubscript{20}",
+				   "T\\textsubscript{m}",
+				   "T\\textsubscript{m}+\\SI{20}{\\percent}",
+				   "T\\textsubscript{m}-\\SI{20}{\\percent}")) +
+    theme(legend.position=c(0.887,0.78))
+@
 \section{Kryteria systemu nagłośnienia}
 
 \begin{itemize}
