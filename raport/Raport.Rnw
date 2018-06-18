@@ -563,8 +563,49 @@ ggplot(data=dafr, aes(x=rep(xticks,4), y=value, group=variable)) +
 	przedstawia sumaryczny poziom ciśnienia akustycznego dla wszystkich
 	częstotliwości.
     \item
+	Rysunek \ref{fig:stat} przedstawia histogramy wystąpięń poziomów
+	ciśnieni akustycznych na siatce wynikowej symulacji.
+    \item
 	Rysunek \ref{fig:sti} przedstawia rozkład STI w sali
 \end{itemize}
+<<stat, fig.cap="Rozkłady poziomów ciśnienia z symulacji">>=
+dta <- list(x250=c(88.5, 89.0, 89.5, 90.0, 90.5, 91.0, 91.5, 92.0),
+	    y250=c(12.7, 22.7, 15.6, 8.1, 13.8, 15.6, 10.8, 0.6),
+	    x500=c(85.5, 86.0, 86.5, 87.0, 87.5, 88.0, 88.5, 89.0),
+	    y500=c( 0.6, 11.9, 29.6, 24.0, 26.0, 6.5, 1.3, 0.2),
+	    x1k=c(83.0, 83.5, 84.0, 84.5, 85.0, 85.5, 86.0, 86.5, 87.0,
+		  87.5, 88.0, 88.5),
+	    y1k=c(1.5, 8.1, 20.0, 21.9, 15.2, 13.5, 7.7, 5.6, 4.8, 1.0,
+		  0.6, 0),
+	    x2k=c(78.5, 79.0, 79.5, 80.0, 80.5, 81.0, 81.5, 82.0, 82.5,
+		  83.0, 83.5, 84.0, 84.5, 85.0, 85.5),
+	    y2k=c(0.2, 1.0, 2.5, 3.1, 1.9, 12.9, 20.2, 11.3, 12.3, 16.0,
+		  12.7, 5.0, 0.6, 0.2, 0),
+	    x4k=c(74.5, 75.0, 75.5, 76.0, 76.5, 77.0, 77.5, 78.0, 78.5,
+		  79.0, 79.5, 80.0, 80.5, 81.0, 81.5, 82.0, 82.5, 83.0,
+		  83.5),
+	    y4k=c(0.2, 0.8, 0.8, 1.7, 1.5, 2.1, 2.1, 2.1, 2.5, 3.5, 5.8,
+		  18.3, 20.6, 13.5, 9.6, 6.0, 5.4, 2.5, 0.8),
+	    xsum=c(93.5, 94.0, 94.5, 95.0, 95.5, 96.0, 96.5, 97.0, 97.5),
+	    ysum=c(0.2, 21.2, 22.7, 15.0, 14.4, 17.1, 8.3, 1.0, 0))
+ggplot() +
+    geom_step(mapping=aes(x=dta$x250, y=dta$y250, color="C1")) +
+    geom_step(mapping=aes(x=dta$x500, y=dta$y500, color="C2")) +
+    geom_step(mapping=aes(x=dta$x1k, y=dta$y1k, color="C3")) +
+    geom_step(mapping=aes(x=dta$x2k, y=dta$y2k, color="C4")) +
+    geom_step(mapping=aes(x=dta$x4k, y=dta$y4k, color="C5")) +
+    geom_step(mapping=aes(x=dta$xsum, y=dta$ysum, color="C6")) +
+    scale_x_continuous(name="Poziom SPL [\\si{\\decibel}]") +
+    scale_y_continuous(name="Liczba wyst\\k{a}pie\\'n") +
+    scale_colour_discrete(name="Cz\\k{e}stotliwo\\'s\\'c",
+			  labels=c("\\SI{250}{\\hertz}",
+				   "\\SI{500}{\\hertz}",
+				   "\\SI{1}{\\kilo\\hertz}",
+				   "\\SI{2}{\\kilo\\hertz}",
+				   "\\SI{4}{\\kilo\\hertz}",
+				   "Suma")) +
+    theme(legend.position="bottom")
+@
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{Images/SPL250Hz.png}
