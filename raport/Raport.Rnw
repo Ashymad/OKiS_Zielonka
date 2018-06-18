@@ -126,6 +126,12 @@ tercje <- round(dirmean(Sys.glob("./Dirac_Data/* third-octaves.txt")),2)
 	Zbadano salę widowiskowo-konferencyjna Ośrodka Kultury i Sportu w
 	Zielonce znajdującą się w budynku Miejskiego Gimnazjum w Zielonce.
 	Plan pomieszczenia przedstawia rysunek \ref{fig:plan1}.
+    \item
+	Objętość pomieszczenia: \SI{1400}{\meter\cubed}
+    \item
+	Pomieszczenie posiada 230 składanych krzeseł obitych stosunkowo cienkim
+	nieporowatym materiałem (patrz rys. \ref{fig:krze}). Podczas pomiarów
+	były złożone. 
 \end{itemize}
 \begin{figure}[H]
     \centering
@@ -134,12 +140,6 @@ tercje <- round(dirmean(Sys.glob("./Dirac_Data/* third-octaves.txt")),2)
     \label{fig:plan1}
 \end{figure}
 \begin{itemize}
-    \item
-	Objętość pomieszczenia: \SI{1400}{\meter\cubed}
-    \item
-	Pomieszczenie posiada 230 składanych krzeseł obitych stosunkowo cienkim
-	nieporowatym materiałem (patrz rys. \ref{fig:krze}). Podczas pomiarów
-	były złożone. 
     \item
 	Pomieszczenie posiada kształt prostokątny na rzucie odgórnym, miejsca
 	są ustawione w rzędach wschodzących pod kątem do góry.
@@ -472,9 +472,9 @@ ggplot(data=dafr, aes(x=rep(xticks,4), y=value, group=variable)) +
 			  name="Warto\\'s\\'c",
 			  labels=c("T\\textsubscript{20}",
 				   "T\\textsubscript{m}",
-				   "T\\textsubscript{m}+\\SI{20}{\\percent}",
-				   "T\\textsubscript{m}-\\SI{20}{\\percent}")) +
-    theme(legend.position=c(0.887,0.78))
+				   "T\\textsubscript{m}$+\\SI{20}{\\percent}$",
+				   "T\\textsubscript{m}$-\\SI{20}{\\percent}$")) +
+    theme(legend.position=c(0.886,0.78))
 @
 \section{Kryteria systemu nagłośnienia}
 
@@ -483,12 +483,14 @@ ggplot(data=dafr, aes(x=rep(xticks,4), y=value, group=variable)) +
 	Pomieszczenie jest salą wielofunkcyjną w której odbywają się przeróżne
 	wydarzenia szkolne i kulturalne, natomiast jej główne przeznaczenie
 	można określić jako audytoryjne, gdyż najczęściej odbywają się w tej
-	sali arcynudne przemowy Pani Dyrektor.
+	sali przemowy Dyrekcji Gimnazjum.
     \item
 	Jako że audiencją mówców występujących w tej sali jest najczęściej
-	pełna sala gimnazjalistów, toteż przyjeto dosyć wysokie tło 65 dB.
+	pełna sala gimnazjalistów, toteż przyjeto dosyć wysokie tło
+	\SI{65}{\decibel}.
     \item
-	Zdecydowano się na poziom w okolicach 85-90 dB na sali.
+	Zdecydowano się na poziom w okolicach od \num{85} do \SI{90}{\decibel}
+	na sali.
 \end{itemize}
 
 \section{Rozmieszczenie i konfiguracja systemu nagłośnieniowego}
@@ -496,27 +498,49 @@ ggplot(data=dafr, aes(x=rep(xticks,4), y=value, group=variable)) +
 \begin{itemize}
     \item
 	Salę nagłośniono dwoma zestawami głośnikowymi umieszczonymi w narożach
-	sali (rys. 16), znajdują się one na wysokości 6,35 m, są oddalone od
-	ścian bocznych o 1,75 m. Głośnik po lewej (ze strony widowni, jak na
-	rysunku) stronie jest oddalony od ściany tylniej o 0,5 m, a prawy jest
-	na tej samej linii. Głośniki są skierowane w dół pod kątem 30°
+	sali (rys. \ref{fig:rzuty}), znajdują się one na wysokości
+	\SI{6.35}{\meter}, są oddalone od ścian bocznych o \SI{1.75}{\meter}.
+	Głośnik po lewej (ze strony widowni, jak na rysunku) stronie jest
+	oddalony od ściany tylniej o \SI{0.5}{\meter} , a prawy jest na tej
+	samej linii. Głośniki są skierowane w dół pod kątem \SI{30}{\degree}
 	względem poziomu.
     \item
 	Wykorzystano dwudrożne zestawy głośnikowe firmy macpherson, model
-	PC12, wybrane parametry przedstawia tablica 6. 
+	PC12, wybrane parametry przedstawia tablica \ref{tab:glos}. 
+    \item
+	Wybrano zestawy o nadmiernej mocy z powodu wielości zastosowań sali.
+	Pozwala to na przeprowadzenie koncertów i występów innego rodzaju w tej
+	sali.
 \end{itemize}
-
+\begin{figure}[H]%
+    \centering
+    \subfloat{%
+	\includegraphics[width=0.6\textwidth]{Images/RzutBok.png}
+    }
+    \subfloat{%
+	\includegraphics[width=0.4\textwidth, angle=90]{Images/RzutGora.png}
+    }
+    \caption{Umiejscowienie zestawów głośnikowych}
+    \label{fig:rzuty}
+\end{figure}%
 \begin{table}[h]
     \centering
-    \begin{tabular}{|c|c|c|}
-	\hline
-	Parametr & Wartość\\\hline
-	Moc zestawu (RMS) & 300 W\\\hline
-	Skuteczność (1 W / 1 m) & 96 dB\\\hline
-	Max SPL & 123 dB\\\hline
-	Zakres częstotliwości (-2 dB) & 80 Hz -- 18 Hz\\\hline
-	Kąt promieniowania (pion/poziom, -6 dB) & 60° / 50°\\\hline
+    \caption{Parametry wybranego zestawu głośnikowego}
+    \begin{tabular}{lr}
+	\toprule
+	Parametr & Wartość\\
+	\midrule
+	Moc zestawu (RMS) & \SI{300}{\watt}\\
+	Skuteczność (\SI{1}{\watt} na \SI{1}{\meter}) &
+	\SI{96}{\decibel}\\
+	Max SPL & \SI{123}{\decibel}\\ Zakres
+	częstotliwości (\SI{-2}{\decibel}) & \SI{80}{\hertz} --
+	\SI{18}{\hertz}\\
+	Kąt promieniowania (pion/poziom, \SI{-6}{\decibel}) & \SI{60}{\degree} /
+	\SI{50}{\degree}\\
+	\bottomrule
     \end{tabular}
+    \label{tab:glos}
 \end{table}
 
 \section{Analiza}
@@ -525,26 +549,73 @@ ggplot(data=dafr, aes(x=rep(xticks,4), y=value, group=variable)) +
     \item
 	Symulację przeprowadzono w programie CATT Acoustic
     \item
-	Parametry symulacji to: krok siatki: 0,5 m; liczba promieni: 47335;
-	długość echogramu: 2 s. Wzięto pod uwagę pochłanianie dźwięku przez
-	powietrzę (absorpcję).
+	Parametry symulacji to: krok siatki: \SI{0.5}{\meter}; liczba promieni:
+	47335; długość echogramu: \SI{2}{\second}. Wzięto pod uwagę
+	pochłanianie dźwięku przez powietrzę (absorpcję).
     \item
-	Do wyznaczania STI, ustalono poziom tła wynoszący 65 dB.
+	Do wyznaczania STI, ustalono poziom tła wynoszący \SI{65}{\decibel}.
     \item
-	Rysunki od 17 do 21 przedstawiają rozkład ciśnienia akustycznego w
-	nagłośnionej sali, dla częstotliwości kolejno 250 Hz, 500 Hz, 1 kHz, 2
-	kHz, 4 kHz
+	Rysunki \ref{fig:spl250}, \ref{fig:spl500}, \ref{fig:spl1k},
+	\ref{fig:spl2k} i \ref{fig:spl4k} przedstawiają rozkład ciśnienia
+	akustycznego w nagłośnionej sali, dla częstotliwości kolejno
+	\SI{250}{\hertz}, \SI{500}{\hertz}, \SI{1}{\kilo\hertz},
+	\SI{2}{\kilo\hertz} i \SI{4}{\kilo\hertz}. Rysunek \ref{fig:splsum}
+	przedstawia sumaryczny poziom ciśnienia akustycznego dla wszystkich
+	częstotliwości.
     \item
-	Rysunek 22 przedstawia rozkład STI w sali
+	Rysunek \ref{fig:sti} przedstawia rozkład STI w sali
 \end{itemize}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/SPL250Hz.png}
+    \caption{Widok na scenę modelu}
+    \label{fig:spl250}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/SPL500Hz.png}
+    \caption{Widok na scenę modelu}
+    \label{fig:spl500}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/SPL1kHz.png}
+    \caption{Widok na scenę modelu}
+    \label{fig:spl1k}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/SPL2kHz.png}
+    \caption{Widok na scenę modelu}
+    \label{fig:spl2k}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/SPL4kHz.png}
+    \caption{Widok na scenę modelu}
+    \label{fig:spl4k}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/SPLSUM.png}
+    \caption{Widok na scenę modelu}
+    \label{fig:splsum}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/STI.png}
+    \caption{Widok na scenę modelu}
+    \label{fig:sti}
+\end{figure}
 
-\section{Wnioski}
+\section{Podsumowanie}
 
 \begin{itemize}
     \item
 	Uzyskano porządane poziomy ciśnienia w pomieszczeniu
     \item
-	Mimo wysokiego tła uzyskano STI w całej sali > 0,7 co ma
-	szczególne znaczenie w przypadku tej sali jako sali do przemówień.
+	Mimo wysokiego tła uzyskano STI w całej sali większe od \num{0.6} co
+	oznacza dobrą zrozumiałoś, ma to szczególne znaczenie w przypadku tej
+	sali jako sali do przemówień.
 \end{itemize}
 \end{document}
