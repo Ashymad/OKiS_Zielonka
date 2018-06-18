@@ -19,6 +19,7 @@
 \usepackage{amsmath, amssymb, amsfonts}
 \usepackage{mathtools}
 \usepackage{setspace}
+\usepackage[shortcuts]{extdash}
 \usepackage{fontspec,xunicode}
 \usepackage{enumitem}
 \usepackage{booktabs}
@@ -489,7 +490,10 @@ ggplot(data=dafr, aes(x=rep(xticks,4), y=value, group=variable)) +
 	pełna sala gimnazjalistów, toteż przyjeto dosyć wysokie tło
 	\SI{65}{\decibel}.
     \item
-	Zdecydowano się na poziom w okolicach od \num{85} do \SI{90}{\decibel}
+	Zrozumiałośc mowy jest w tej sali priorytetem, toteż wymagano
+	przynajmniej dobrej (STI > 0.6).
+    \item
+	Zdecydowano się na poziom w okolicach od \num{80} do \SI{90}{\decibel}
 	na sali.
 \end{itemize}
 
@@ -568,7 +572,7 @@ ggplot(data=dafr, aes(x=rep(xticks,4), y=value, group=variable)) +
     \item
 	Rysunek \ref{fig:sti} przedstawia rozkład STI w sali
 \end{itemize}
-<<stat, fig.cap="Rozkłady poziomów ciśnienia z symulacji">>=
+<<stat, fig.height=4, fig.cap="Rozkłady poziomów ciśnienia z symulacji">>=
 dta <- list(x250=c(88.5, 89.0, 89.5, 90.0, 90.5, 91.0, 91.5, 92.0),
 	    y250=c(12.7, 22.7, 15.6, 8.1, 13.8, 15.6, 10.8, 0.6),
 	    x500=c(85.5, 86.0, 86.5, 87.0, 87.5, 88.0, 88.5, 89.0),
@@ -609,43 +613,43 @@ ggplot() +
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{Images/SPL250Hz.png}
-    \caption{Widok na scenę modelu}
+    \caption{Mapa rozkładu ciśnienia akustycznego dla \SI{250}{\hertz}}
     \label{fig:spl250}
 \end{figure}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{Images/SPL500Hz.png}
-    \caption{Widok na scenę modelu}
+    \caption{Mapa rozkładu ciśnienia akustycznego dla \SI{500}{\hertz}}
     \label{fig:spl500}
 \end{figure}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{Images/SPL1kHz.png}
-    \caption{Widok na scenę modelu}
+    \caption{Mapa rozkładu ciśnienia akustycznego dla \SI{1}{\kilo\hertz}}
     \label{fig:spl1k}
 \end{figure}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{Images/SPL2kHz.png}
-    \caption{Widok na scenę modelu}
+    \caption{Mapa rozkładu ciśnienia akustycznego dla \SI{2}{\kilo\hertz}}
     \label{fig:spl2k}
 \end{figure}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{Images/SPL4kHz.png}
-    \caption{Widok na scenę modelu}
+    \caption{Mapa rozkładu ciśnienia akustycznego dla \SI{4}{\kilo\hertz}}
     \label{fig:spl4k}
 \end{figure}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{Images/SPLSUM.png}
-    \caption{Widok na scenę modelu}
+    \caption{Mapa sumarycznego rozkładu ciśnienia akustycznego}
     \label{fig:splsum}
 \end{figure}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{Images/STI.png}
-    \caption{Widok na scenę modelu}
+    \caption{Mapa rozkładu STI}
     \label{fig:sti}
 \end{figure}
 
@@ -653,10 +657,21 @@ ggplot() +
 
 \begin{itemize}
     \item
-	Uzyskano porządane poziomy ciśnienia w pomieszczeniu
+	Udało się uzyskać założonego poziomu ciśnienia akustycznego dla
+	wszystkich częstotliwości. Jak obrazują mapy rozkładów (rys.
+	\ref{fig:spl250}\-/\ref{fig:spl4k}) oraz hostagramy wystąpnień (rys.
+	\ref{fig:stat}) Wszystkie pasma częstotliwościowe w dużej mierze
+	mieszczą się w założonym zakresie 80\-/\SI{90}{\decibel}, choć wyższe
+	częstotliwości nie są tak równomiernie rozłożone jak niższe.  Natomiast
+	poziom sumaryczny jest dosyć równomiernie rozłożony na sali, w
+	okolicach \SI{95}{\decibel} (rys. \ref{fig:splsum}). Istnieje możliwość
+	zwiększenia poziomu zwiększając moc podawaną na zestawy głośnikowe w
+	celu stworzenia warunków optymalnych do nagłośnienia koncertu.
     \item
-	Mimo wysokiego tła uzyskano STI w całej sali większe od \num{0.6} co
-	oznacza dobrą zrozumiałoś, ma to szczególne znaczenie w przypadku tej
-	sali jako sali do przemówień.
+	Mimo wysokiego tła uzyskano STI w całej sali większe od \num{0.6} (rys.
+	\ref{fig:sti}) co oznacza dobrą zrozumiałoś, ma to szczególne znaczenie
+	w przypadku tej sali jako sali do przemówień. Istnieje niewielki
+	problem w postaci niższej wartości tego parametru w pierwszych rzędach
+	niż w pozostałych.
 \end{itemize}
 \end{document}
